@@ -179,7 +179,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": none,
+   "execution_count": None,
    "id": "5abfade9-1c8a-4786-bc10-f70e19f1bc82",
    "metadata": {},
    "outputs": [],
