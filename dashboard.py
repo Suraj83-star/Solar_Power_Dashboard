@@ -8,10 +8,25 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 
+# ---- PAGE CONFIGURATION ----
+st.set_page_config(
+    layout="centered",
+    page_title="Smart Irrigation Dashboard",
+    page_icon="🌞",
+    initial_sidebar_state="expanded"
+)
+
+# ---- Title and Introduction ----
+st.title("🌞 Smart Irrigation Dashboard – Aurangabad")
+st.markdown("""
+This dashboard displays the 72-hour **solar irradiance forecast** based on atmospheric data.
+Pump alerts are generated based on GHI thresholds (500 W/m²).
+""")
+
 # ---- Load Forecast Data ----
 @st.cache_data
 def load_data():
-    df = pd.read_csv("72h_forecast_results.csv")  # CSV from forecasting output
+    df = pd.read_csv("72h_forecast_results.csv")   # CSV from forecasting output
     df['timestamp'] = pd.to_datetime(df['timestamp'])
 
     # Ensure 'irrigation_alert' column exists or create it based on threshold
@@ -20,14 +35,6 @@ def load_data():
     return df
 
 forecast_df = load_data()
-
-# ---- Title and Sidebar ----
-st.set_page_config(layout="centered")
-st.title("🌞 Smart Irrigation Dashboard – Aurangabad")
-st.markdown("""
-This dashboard displays the 72-hour **solar irradiance forecast** based on atmospheric data. 
-Pump alerts are generated based on GHI thresholds (500 W/m²).
-""")
 
 # ---- Forecast Plot ----
 st.subheader("🔮 Forecasted GHI (W/m²)")
